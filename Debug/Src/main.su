@@ -1,0 +1,8 @@
+main.c:69:6:HAL_ADC_ConvCpltCallback	0	static
+main.c:82:5:__io_putchar	16	static
+main.c:90:6:_write	16	static
+main.c:161:6:SET_ADCOption1	8	static
+main.c:191:6:SET_ADCOption2	8	static
+main.c:214:6:SystemClock_Config	96	static
+main.c:105:5:main	48	static
+main.c:499:6:Error_Handler	0	static
