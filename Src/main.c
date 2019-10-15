@@ -132,7 +132,7 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   //SET_ADCOption1 (ENABLE);
- SET_ADCOption2 (SYSCFG_PMC_ADCxDC2, ENABLE);
+ //SET_ADCOption2 (SYSCFG_PMC_ADCxDC2, ENABLE);
   /* USER CODE END 2 */
 
   /* Infinite loop */
