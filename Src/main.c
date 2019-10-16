@@ -151,6 +151,62 @@ int main(void)
   /* USER CODE END 3 */
 }
 
+<<<<<<< HEAD
+=======
+/**
+* @brief Enables or disables the ADC Option_1 configuration.
+ * @param NewState: new state of the ADCDC1 bit.
+ * This parameter can be: ENABLE or DISABLE.
+ * @retval None
+ */
+void SET_ADCOption1 (FunctionalState NewState)
+{
+
+ /* ENABLE PWR clock */
+	__HAL_RCC_PWR_CLK_ENABLE();
+
+ if (NewState != DISABLE)
+ {
+ /* Set ADCDC1 bit */
+ PWR->CR |= ((uint32_t)PWR_CR_ADCDC1);
+ }
+ else
+ {
+ /* Reset ADCDC1 bit */
+ PWR->CR &= (uint32_t)(~PWR_CR_ADCDC1);
+ }
+}
+
+/**
+ * @brief Enables or disables the ADCx Option_2 configuration.
+ * @param ADCxDC2: The ADCxDC2 bit to be used.
+ * This parameter can be one of the following values:
+ * @arg SYSCFG_PMC_ADCxDC2: All ADCxDC2 bits
+ * @arg SYSCFG_PMC_ADC1DC2: ADC1DC2 bit
+ * @arg SYSCFG_PMC_ADC2DC2: ADC2DC2 bit
+ * @arg SYSCFG_PMC_ADC3DC2: ADC3DC2 bit
+ * @param NewState: new state of the ADCxDC2 bit.
+ * This parameter can be: ENABLE or DISABLE.
+ * @retval None
+ */
+void SET_ADCOption2 (uint32_t ADCxDC2, FunctionalState NewState)
+{
+
+ /* Enable the SYSCFG clock*/
+	__HAL_RCC_SYSCFG_CLK_ENABLE();
+
+ if (NewState != DISABLE)
+ {
+ /* Set the ADCxDC2 */
+ SYSCFG->PMC |= (uint32_t)ADCxDC2;
+ }
+ else
+ {
+ /* Reset the ADCxDC2 */
+ SYSCFG->PMC &=(uint32_t)(~ADCxDC2);
+}
+}
+>>>>>>> parent of ff74db9... add RCC
 
 
 /**
@@ -168,12 +224,22 @@ void SystemClock_Config(void)
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
   /** Initializes the CPU, AHB and APB busses clocks 
   */
+<<<<<<< HEAD
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 16;
   RCC_OscInitStruct.PLL.PLLN = 192;
+=======
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 72;
+>>>>>>> parent of ff74db9... add RCC
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
