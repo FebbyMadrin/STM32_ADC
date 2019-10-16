@@ -5,6 +5,7 @@ Debug/LM35.list
 Debug/LM35.map
 Debug/Src/main.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 Debug/LM35.elf
 Debug/LM35.hex
 Debug/LM35.list
@@ -20,5 +21,7 @@ LM35.elf.launch
 *.o
 *.su
 *.o
+=======
+>>>>>>> parent of ff74db9... add RCC
 =======
 >>>>>>> parent of ff74db9... add RCC
