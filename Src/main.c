@@ -57,10 +57,9 @@ static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_USART2_UART_Init(void);
+/* USER CODE BEGIN PFP */
 void SET_ADCOption1 (FunctionalState NewState);
 void SET_ADCOption2 (uint32_t ADCxDC2, FunctionalState NewState);
-/* USER CODE BEGIN PFP */
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -153,60 +152,6 @@ int main(void)
 }
 
 
-/**
-* @brief Enables or disables the ADC Option_1 configuration.
- * @param NewState: new state of the ADCDC1 bit.
- * This parameter can be: ENABLE or DISABLE.
- * @retval None
- */
-void SET_ADCOption1 (FunctionalState NewState)
-{
-
- /* ENABLE PWR clock */
-	__HAL_RCC_PWR_CLK_ENABLE();
-
- if (NewState != DISABLE)
- {
- /* Set ADCDC1 bit */
- PWR->CR |= ((uint32_t)PWR_CR_ADCDC1);
- }
- else
- {
- /* Reset ADCDC1 bit */
- PWR->CR &= (uint32_t)(~PWR_CR_ADCDC1);
- }
-}
-
-/**
- * @brief Enables or disables the ADCx Option_2 configuration.
- * @param ADCxDC2: The ADCxDC2 bit to be used.
- * This parameter can be one of the following values:
- * @arg SYSCFG_PMC_ADCxDC2: All ADCxDC2 bits
- * @arg SYSCFG_PMC_ADC1DC2: ADC1DC2 bit
- * @arg SYSCFG_PMC_ADC2DC2: ADC2DC2 bit
- * @arg SYSCFG_PMC_ADC3DC2: ADC3DC2 bit
- * @param NewState: new state of the ADCxDC2 bit.
- * This parameter can be: ENABLE or DISABLE.
- * @retval None
- */
-void SET_ADCOption2 (uint32_t ADCxDC2, FunctionalState NewState)
-{
-
- /* Enable the SYSCFG clock*/
-	__HAL_RCC_SYSCFG_CLK_ENABLE();
-
- if (NewState != DISABLE)
- {
- /* Set the ADCxDC2 */
- SYSCFG->PMC |= (uint32_t)ADCxDC2;
- }
- else
- {
- /* Reset the ADCxDC2 */
- SYSCFG->PMC &=(uint32_t)(~ADCxDC2);
-}
-}
-
 
 /**
   * @brief System Clock Configuration
@@ -224,11 +169,11 @@ void SystemClock_Config(void)
   /** Initializes the CPU, AHB and APB busses clocks 
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 72;
+  RCC_OscInitStruct.PLL.PLLM = 16;
+  RCC_OscInitStruct.PLL.PLLN = 192;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
@@ -242,10 +187,10 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
@@ -471,25 +416,77 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  /*Configure GPIO pin : PC13 */
+  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LD2_Pin */
-  GPIO_InitStruct.Pin = LD2_Pin;
+  /*Configure GPIO pin : PA5 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
 /* USER CODE BEGIN 4 */
+/**
+* @brief Enables or disables the ADC Option_1 configuration.
+ * @param NewState: new state of the ADCDC1 bit.
+ * This parameter can be: ENABLE or DISABLE.
+ * @retval None
+ */
+void SET_ADCOption1 (FunctionalState NewState)
+{
 
+ /* ENABLE PWR clock */
+	__HAL_RCC_PWR_CLK_ENABLE();
+
+ if (NewState != DISABLE)
+ {
+ /* Set ADCDC1 bit */
+ PWR->CR |= ((uint32_t)PWR_CR_ADCDC1);
+ }
+ else
+ {
+ /* Reset ADCDC1 bit */
+ PWR->CR &= (uint32_t)(~PWR_CR_ADCDC1);
+ }
+}
+
+/**
+ * @brief Enables or disables the ADCx Option_2 configuration.
+ * @param ADCxDC2: The ADCxDC2 bit to be used.
+ * This parameter can be one of the following values:
+ * @arg SYSCFG_PMC_ADCxDC2: All ADCxDC2 bits
+ * @arg SYSCFG_PMC_ADC1DC2: ADC1DC2 bit
+ * @arg SYSCFG_PMC_ADC2DC2: ADC2DC2 bit
+ * @arg SYSCFG_PMC_ADC3DC2: ADC3DC2 bit
+ * @param NewState: new state of the ADCxDC2 bit.
+ * This parameter can be: ENABLE or DISABLE.
+ * @retval None
+ */
+void SET_ADCOption2 (uint32_t ADCxDC2, FunctionalState NewState)
+{
+
+ /* Enable the SYSCFG clock*/
+	__HAL_RCC_SYSCFG_CLK_ENABLE();
+
+ if (NewState != DISABLE)
+ {
+ /* Set the ADCxDC2 */
+ SYSCFG->PMC |= (uint32_t)ADCxDC2;
+ }
+ else
+ {
+ /* Reset the ADCxDC2 */
+ SYSCFG->PMC &=(uint32_t)(~ADCxDC2);
+}
+}
 /* USER CODE END 4 */
 
 /**
