@@ -134,13 +134,14 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
 		HAL_ADC_Start (&hadc1);
 		HAL_ADC_PollForConversion(&hadc1, 1000000);  // poll for conversion
 		adc_val = HAL_ADC_GetValue(&hadc1);  // get the adc value
 		printf("%d \n\r", adc_val);
 		HAL_ADC_Stop(&hadc1);  // stop adc
-	//	HAL_Delay (50);  // wait for 500ms
-    /* USER CODE BEGIN 3 */
+		//	HAL_Delay (50);  // wait for 500ms
   }
   /* USER CODE END 3 */
 }
