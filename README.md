@@ -21,7 +21,7 @@ ART configurations on the ADC accuracy:
 - (Data cache + instruction cache) ON + prefetch OFF
 - FLASH is used and ART ON
 
-![alt text](result.png "result")
+![alt text](https://github.com/FebbyMadrin/STM32_ADC/blob/master/result.PNG "result")
 
 
 ## Measurement Conclusion
