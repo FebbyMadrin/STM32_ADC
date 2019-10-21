@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "febby_flash.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,6 +61,8 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+uint8_t flashWrite[5] = {0x11, 0x22, 0x33, 0x44, 0x55}; //dummy data
+uint8_t flashRead[5];
 uint32_t adc_val, buffer;
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
@@ -126,7 +128,8 @@ int main(void)
   MX_ADC1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  MY_FLASH_SetSectorAddrs(7, 0x08060000);
+  MY_FLASH_WriteN(0, flashWrite, 5, DATA_TYPE_8);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -141,6 +144,7 @@ int main(void)
 		adc_val = HAL_ADC_GetValue(&hadc1);  // get the adc value
 		printf("%d \n\r", adc_val);
 		HAL_ADC_Stop(&hadc1);  // stop adc
+		MY_FLASH_ReadN(0, flashRead, 5, DATA_TYPE_8);
 		//	HAL_Delay (50);  // wait for 500ms
   }
   /* USER CODE END 3 */
