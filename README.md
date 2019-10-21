@@ -3,7 +3,6 @@
 ## STM32 ADC Measurements
 
 ## Measurement Condition
-
 ### Hardware Setup
 ### Firmware Setup
 
@@ -26,3 +25,4 @@
 5. AN2834 - Application note
     How to get the best ADC accuracy
     in STM32 microcontrollers
+
