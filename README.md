@@ -19,7 +19,18 @@ ART configurations on the ADC accuracy:
 - ART ON: (data cache + instruction cache + prefetch) ON
 - ART OFF: (data cache + instruction cache + prefetch) OFF
 - (Data cache + instruction cache) ON + prefetch OFF
-- FLASH used and ART ON
+- FLASH is used and ART ON
+Vin	ART ON		ART OFF		Prefetch OFF		Flash Memory is used	
+	Dispersion	Sample over +- 5 LSB	Dispersion	Sample over +- 5 LSB	Dispersion	Sample over +- 5 LSB	Dispersion	Sample over +- 5 LSB
+0.3 V	19	6.37%	18	4.07%	16	0.06%		
+1.65 V	21	7.90%	20	5.99%	18	0.06%		
+3 V	21	21.53%	24	16.28%	17	0.07%		
+0.3 V	40	11.992	23	4.536	33	6.965		
+		6.756		1.913		1.739		
+1.65 V	30	41.086	27	7.515	39	19.556		
+		6.703		5.146		2.298		
+3 V	25	5.187	29	2.506	37	68.744		
+		3.039		2.506		1.212		
 
 ## Measurement Conclusion
 
