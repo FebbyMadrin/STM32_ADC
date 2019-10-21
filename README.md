@@ -4,7 +4,9 @@
 
 ## Measurement Condition
 ### Hardware Setup
-- The used board is STM32F446RE-Nucleo
+- The used board is STM32F446RE-Nucleo 
+~~STM32F407ZGT6 soldered on a test board (with only a minimum number of other
+hardware components)~~
 - Power Supply range: 3.3 V
 - fADC = 36 MHz
 - Clock source =  external clock (8 MHz) provided by a generator, PLL is enabled, fCPU = 144 MHz
