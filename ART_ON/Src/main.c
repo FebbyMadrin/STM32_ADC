@@ -56,7 +56,8 @@ static void MX_GPIO_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
-
+void SET_ADCOption1 (FunctionalState NewState);
+void SET_ADCOption2 (uint32_t ADCxDC2, FunctionalState NewState);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -130,6 +131,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   MY_FLASH_SetSectorAddrs(7, 0x08060000);
   MY_FLASH_WriteN(0, flashWrite, 5, DATA_TYPE_8);
+  //SET_ADCOption1 (ENABLE);
+  //SET_ADCOption2 (SYSCFG_PMC_ADCxDC2, ENABLE);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -144,7 +147,7 @@ int main(void)
 		adc_val = HAL_ADC_GetValue(&hadc1);  // get the adc value
 		printf("%d \n\r", adc_val);
 		HAL_ADC_Stop(&hadc1);  // stop adc
-		MY_FLASH_ReadN(0, flashRead, 5, DATA_TYPE_8);
+		//MY_FLASH_ReadN(0, flashRead, 5, DATA_TYPE_8);
 		//	HAL_Delay (50);  // wait for 500ms
   }
   /* USER CODE END 3 */
@@ -310,7 +313,59 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+/**
+* @brief Enables or disables the ADC Option_1 configuration.
+ * @param NewState: new state of the ADCDC1 bit.
+ * This parameter can be: ENABLE or DISABLE.
+ * @retval None
+ */
+void SET_ADCOption1 (FunctionalState NewState)
+{
 
+ /* ENABLE PWR clock */
+	__HAL_RCC_PWR_CLK_ENABLE();
+
+ if (NewState != DISABLE)
+ {
+ /* Set ADCDC1 bit */
+ PWR->CR |= ((uint32_t)PWR_CR_ADCDC1);
+ }
+ else
+ {
+ /* Reset ADCDC1 bit */
+ PWR->CR &= (uint32_t)(~PWR_CR_ADCDC1);
+ }
+}
+
+/**
+ * @brief Enables or disables the ADCx Option_2 configuration.
+ * @param ADCxDC2: The ADCxDC2 bit to be used.
+ * This parameter can be one of the following values:
+ * @arg SYSCFG_PMC_ADCxDC2: All ADCxDC2 bits
+ * @arg SYSCFG_PMC_ADC1DC2: ADC1DC2 bit
+ * @arg SYSCFG_PMC_ADC2DC2: ADC2DC2 bit
+ * @arg SYSCFG_PMC_ADC3DC2: ADC3DC2 bit
+ * @param NewState: new state of the ADCxDC2 bit.
+ * This parameter can be: ENABLE or DISABLE.
+ * @retval None
+ */
+void SET_ADCOption2 (uint32_t ADCxDC2, FunctionalState NewState)
+{
+
+ /* Enable the SYSCFG clock*/
+	__HAL_RCC_SYSCFG_CLK_ENABLE();
+
+ if (NewState != DISABLE)
+ {
+ /* Set the ADCxDC2 */
+ SYSCFG->PMC |= (uint32_t)ADCxDC2;
+ }
+ else
+ {
+ /* Reset the ADCxDC2 */
+ SYSCFG->PMC &=(uint32_t)(~ADCxDC2);
+}
+}
 /* USER CODE END 4 */
 
 /**
