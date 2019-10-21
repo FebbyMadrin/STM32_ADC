@@ -30,3 +30,5 @@ LM35.elf.launch
 >>>>>>> parent of ff74db9... add RCC
 *.xml
 results/~$ADC_ART ON_OFF_PREFETCH.xlsx
+*.xml
+*.launch
