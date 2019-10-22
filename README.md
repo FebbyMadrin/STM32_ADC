@@ -28,13 +28,16 @@ ART configurations on the ADC accuracy:
 - FLASH Memory is used and ART ON - Option 1 Enable
 - FLASH Memory is used and ART ON - Option 2 Enable
 
-
-
-## Measurement Conclusion
 ![alt text](https://github.com/FebbyMadrin/STM32_ADC/blob/master/results/result.PNG "result")
+
 ![alt text](https://github.com/FebbyMadrin/STM32_ADC/blob/master/results/result1.PNG "graphics")
 
+## Measurement Conclusion
 
+
+Based on these measurements and comparing to STM32F2xx and STM32F405/F415/F407/
+F417 measurements, we can conclude that ADC accuracy options embedded on these
+products allow an improvement of the ADC code dispersion up to 75 %.
 
 ## References:
 1. STM32F446xC/E - Datasheet - production data
