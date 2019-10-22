@@ -34,10 +34,9 @@ ART configurations on the ADC accuracy:
 
 ## Measurement Conclusion
 
+Between the 3 choices (ART ON, ART OFF, ART ON + Prefetch OFF) it can be concluded that the choice of 'ART ON + Prefetch OFF' is the most accurate, it can be seen from the amount of dispersion and the percentage of dispersion. + - 5 LSB
 
-Based on these measurements and comparing to STM32F2xx and STM32F405/F415/F407/
-F417 measurements, we can conclude that ADC accuracy options embedded on these
-products allow an improvement of the ADC code dispersion up to 75 %.
+But if the application requires to turn on the Prefetch, and is required to use flash memory, then enabling the option 2 is the most high-accuracy alternative.
 
 ## References:
 1. STM32F446xC/E - Datasheet - production data
