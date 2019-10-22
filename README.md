@@ -28,11 +28,10 @@ ART configurations on the ADC accuracy:
 - FLASH Memory is used and ART ON - Option 1 Enable
 - FLASH Memory is used and ART ON - Option 2 Enable
 
-![alt text](https://github.com/FebbyMadrin/STM32_ADC/blob/master/results/result.PNG "result")
 
 
 ## Measurement Conclusion
-
+![alt text](https://github.com/FebbyMadrin/STM32_ADC/blob/master/results/result.PNG "result")
 
 
 
