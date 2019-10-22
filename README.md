@@ -23,7 +23,10 @@ ART configurations on the ADC accuracy:
 - ART ON: (data cache + instruction cache + prefetch) ON
 - ART OFF: (data cache + instruction cache + prefetch) OFF
 - (Data cache + instruction cache) ON + prefetch OFF
-- FLASH is used and ART ON
+- FLASH Memory is used and ART ON
+- FLASH Memory is used and (Data cache + instruction cache) ON + prefetch OFF
+- FLASH Memory is used and ART ON - Option 1 Enable
+- FLASH Memory is used and ART ON - Option 2 Enable
 
 ![alt text](https://github.com/FebbyMadrin/STM32_ADC/blob/master/results/result.PNG "result")
 
@@ -50,3 +53,5 @@ ART configurations on the ADC accuracy:
 1. to avoid the unintended disturbance:
     - put the device far away from EMC Sources, like fan laptop
     - the ADC cable must not contacted by another cable, to avoid crosstalk
+
+    - pada counting ke 1800an sering terjadi galat error
