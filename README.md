@@ -49,9 +49,9 @@ ART configurations on the ADC accuracy:
     How to get the best ADC accuracy
     in STM32 microcontrollers
 
-## Notes:
+<!-- ## Notes:
 1. to avoid the unintended disturbance:
     - put the device far away from EMC Sources, like fan laptop
     - the ADC cable must not contacted by another cable, to avoid crosstalk
 
-    - pada counting ke 1800an sering terjadi galat error
+    - pada counting ke 1800an sering terjadi galat error -->
