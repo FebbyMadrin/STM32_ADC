@@ -32,6 +32,7 @@ ART configurations on the ADC accuracy:
 
 ## Measurement Conclusion
 ![alt text](https://github.com/FebbyMadrin/STM32_ADC/blob/master/results/result.PNG "result")
+![alt text](https://github.com/FebbyMadrin/STM32_ADC/blob/master/results/result1.PNG "graphics")
 
 
 
