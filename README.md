@@ -17,6 +17,10 @@ hardware components)~~
 - 50000x4 acquisitions were taken for each fixed analog input voltage
 
 *All tests were done with fADC = 36 MHz, sampling time = 3 ADC cycles and ADC resolution = 12 bits in order to achieve the fastest ADC conversion (2.4 Msps).*
+
+- how to configre the ART: 'line 150:../ADC_Task/ART_ON/Inc/stm32f4xx_hal_conf.h'
+
+
 ## Results
 The following measurements were considered while evaluating the impact of three different
 ART configurations on the ADC accuracy:
