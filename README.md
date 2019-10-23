@@ -25,6 +25,12 @@ hardware components)~~
 #define  DATA_CACHE_ENABLE            1U // ON
 ```
 
+- how to enable the option 1 and option 2: `line 134:../ADC_Task/ART_ON/Src/main.c`
+``` markdown
+/* uncomment one of these option */
+//SET_ADCOption1 (ENABLE);
+//SET_ADCOption2 (SYSCFG_PMC_ADCxDC2, ENABLE);
+```
 
 ## Results
 The following measurements were considered while evaluating the impact of three different
