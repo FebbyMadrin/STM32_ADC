@@ -18,7 +18,12 @@ hardware components)~~
 
 *All tests were done with fADC = 36 MHz, sampling time = 3 ADC cycles and ADC resolution = 12 bits in order to achieve the fastest ADC conversion (2.4 Msps).*
 
-- how to configre the ART: `line 150:../ADC_Task/ART_ON/Inc/stm32f4xx_hal_conf.h"`
+- how to configre the ART: `line 150:../ADC_Task/ART_ON/Inc/stm32f4xx_hal_conf.h`
+``` markdown
+#define  PREFETCH_ENABLE              0U // OFF
+#define  INSTRUCTION_CACHE_ENABLE     1U // ON
+#define  DATA_CACHE_ENABLE            1U // ON
+```
 
 
 ## Results
